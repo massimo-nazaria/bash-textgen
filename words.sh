@@ -9,7 +9,7 @@
 # - output one word (or period) per line
 cat /dev/stdin\
 	| tr 'A-Z' 'a-z'\
-	| sed 's/[^a-z\.]/ /g'\
+	| sed 's/[^a-z.]/ /g'\
 	| tr -s ' .'\
 	| sed 's/\./ \. /g'\
 	| tr -s ' '\
