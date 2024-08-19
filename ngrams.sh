@@ -21,23 +21,24 @@ fi
 
 # provided n
 n=$1;
-# declare array to populate ngrams
-declare -a ngram;
-# compute n-1 once and for all
-p=$(($n-1));
-# populate ngram array with initial n words
-for i in `seq 0 $p`; do
-	read word;
-	ngram[$i]=$word;
-done
-# print 1st ngram
-echo ${ngram[*]};
-# compute and print all the other ngrams
-while read word; do
-	# assign new ngram with previous ngram from 2nd word to end + new word
-	ngram=(${ngram[@]:1:$p} $word);
-	# print ngram
-	echo ${ngram[*]};
+
+# make temporary dir in /tmp
+tmpd=`mktemp -d`;
+
+# redirect words from stdin to a temporary file named 1-grams in the /tmp folder
+cat - > ${tmpd}/1-grams;
+
+# start building n-grams one step at a time starting from 2-grams
+for i in `seq 2 $n`; do
+	# compute temporary file with (i)-grams in the /tmp folder
+	paste -d' ' <(head -n -1 ${tmpd}/$(($i-1))-grams) <(tail -n +$i ${tmpd}/1-grams) > ${tmpd}/${i}-grams
 done
 
+# output last temporary generated n-gram file
+cat ${tmpd}/${n}-grams;
+
+# clean up temporary dir
+rm -rf $tmpd;
+
+# terminate program successfully
 exit 0;
