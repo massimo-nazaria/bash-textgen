@@ -8,7 +8,7 @@
 # - remove multiple whitespaces and period characters
 # - output one word (or period) per line
 cat /dev/stdin\
-	| tr 'A-Z' 'a-z'\
+	| tr '[:upper:]' '[:lower:]'\
 	| sed 's/[^a-z.]/ /g'\
 	| tr -s ' .'\
 	| sed 's/\./ \. /g'\

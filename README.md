@@ -6,7 +6,7 @@ More info: [Natural Language Processing in Bash](https://massimo-nazaria.github.
 
 ## QUICK START
 
-Let's generate some prose by training our model using [_Moby-Dick_](https://gutenberg.org/ebooks/15) as text corpus.
+Let's generate some prose by training our model using [_Moby Dick_](https://gutenberg.org/ebooks/15) as text corpus.
 
 ### 1. Get the `bash-textgen/` folder and enter it
 
@@ -64,9 +64,9 @@ _Text trasformations_:
 cat [word file] | ./ngrams.sh [n] > [ngram file]
 ```
 
-* [n] argument must be >= 2
-* input [word file] must be made with `words.sh`
-* output [ngram file] contains [n]-grams (one per line)
+* n argument must be >= 2
+* input word file must be made with `words.sh`
+* output ngram file contains n-grams (one per line)
 
 ### textgen.sh -- generate random text from n-grams
 
@@ -74,6 +74,6 @@ cat [word file] | ./ngrams.sh [n] > [ngram file]
 ./textgen.sh [ngram file] [initial n-1 words]
 ```
 
-* [ngram file] argument must be made with `ngrams.sh`
-* [initial words] argument must be a string with _n_-1 words, i.e. one word less than given _n_-grams
-* the generated sentence in output starts with the provided initial _n_-1 words
+* ngram file must be made with `ngrams.sh`
+* initial word argument must be a string with _n_-1 words, i.e. one word less than given _n_-grams
+* the generated sentence in output starts with the provided _n_-1 words
